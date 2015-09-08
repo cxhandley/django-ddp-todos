@@ -8,29 +8,36 @@ import models
 class List(Collection):
     model = models.List
 
+    @api_endpoint('insert')
+    def insert(self, params):
+      print(params)
+      obj = models.List(name=params['name'], incompleteCount=params['incompleteCount'])
+      obj.save()
+
 class Todos(Collection):
     model = models.Todos
 
 
 class publicLists(Publication):
 
-  def get_queries(self):
-    return [
-        models.List.objects.filter(userId=None),
+  queries = [
+        models.List.objects.filter(userId=''),
     ]
 
 class privateLists(Publication):
 
-  def get_queries(self, userId):
-    return [
-        models.List.objects.filter(userId=userId),
+  queries = [
+        models.List.objects.filter(userId=''),
     ]
 
 class todos(Publication):
 
     def get_queries(self, listId):
+        list_id = models.List.objects.get(pk=get_object_id(models.List, listId))
+        print(list_id)
+        print(models.Todos.objects.filter(listId=list_id))
         return [
-            models.Todos.objects.filter(listId=listId)
+            models.Todos.objects.filter(listId=list_id)
         ]
 
 

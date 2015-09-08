@@ -1,3 +1,6 @@
+Lists = new Mongo.Collection("django_todos.list");
+Todos = new Mongo.Collection("django_todos.todos");
+
 var MENU_KEY = 'menuOpen';
 Session.setDefault(MENU_KEY, false);
 
@@ -111,7 +114,7 @@ Template.appBody.events({
 
   'click .js-logout': function() {
     Meteor.logout();
-    
+
     // if we are on a private list, we'll need to go to a public one
     var current = Router.current();
     if (current.route.name === 'listsShow' && current.data().userId) {
@@ -120,7 +123,7 @@ Template.appBody.events({
   },
 
   'click .js-new-list': function() {
-    var list = {name: Lists.defaultName(), incompleteCount: 0};
+    var list = {name: "new list", incompleteCount: 0};
     list._id = Lists.insert(list);
 
     Router.go('listsShow', list);

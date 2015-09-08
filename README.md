@@ -28,7 +28,12 @@ DATABASES = {
     }
 }
 
-createdb django_todos
+createdb django_todos   # for postgres
+
+update models to match meteor
+add ddp.py file and set up Collections and Publictions
+
+python manage.py makemigrations
 
 python manage.py migrate
 
