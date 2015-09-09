@@ -38,12 +38,10 @@ Template.listsShow.helpers({
   },
 
   todosReady: function() {
-    console.log(Router.current().todosHandle.ready());
     return Router.current().todosHandle.ready();
   },
 
   todos: function(listId) {
-    console.log(listId);
     return Todos.find({listId: listId}, {sort: {createdAt : -1}});
   }
 });

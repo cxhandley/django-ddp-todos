@@ -10,10 +10,8 @@ class List(Collection):
 
     @api_endpoint('insert')
     def insert(self, params):
-      obj = models.List(name=params['name'], incompleteCount=params['incompleteCount'])
-      obj.save()
-      obj.listId = get_meteor_id(obj)
-      obj.save()
+        obj = models.List(name=params['name'], incompleteCount=params['incompleteCount'])
+        obj.save()
 
     @api_endpoint('update')
     def update(self, params, _set, other):
@@ -28,6 +26,11 @@ class List(Collection):
                 new_val = cur + val
                 setattr(obj, key, new_val)
                 obj.save()
+
+    @api_endpoint('remove')
+    def remove(self, params):
+      obj = models.List.objects.get(pk=get_object_id(models.List, params['_id']))
+      obj.delete()
 
 
 class Todos(Collection):
@@ -48,6 +51,11 @@ class Todos(Collection):
             for key, val in _set['$set'].items():
                 setattr(obj, key, val)
                 obj.save()
+
+    @api_endpoint('remove')
+    def remove(self, params):
+      obj = models.Todos.objects.get(pk=get_object_id(models.Todos, params['_id']))
+      obj.delete()
 
 
 class publicLists(Publication):
