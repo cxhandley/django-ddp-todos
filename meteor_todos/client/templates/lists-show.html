@@ -57,7 +57,7 @@
         {{#with _id}} {{! Establish new data context with only the '_id'
                           field. This way, when the 'incompleteCount' field
                           changes, we don't re-render the list contents }}
-          {{#each todos}}
+          {{#each todos this}}
             {{> todosItem}}
           {{else}}
             <div class="wrapper-message">
