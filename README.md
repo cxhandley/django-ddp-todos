@@ -37,6 +37,13 @@ python manage.py makemigrations
 
 python manage.py migrate
 
-export PYTHONPATH="${PYTHONPATH}:~/<path to django root>/djme_todos"
+export PYTHONPATH="${PYTHONPATH}:~/<path to your-django-project base_dir>/djme_todos"
 
 DJANGO_SETTINGS_MODULE=djme_todos.settings dddp
+
+DDP_DEFAULT_CONNECTION_URL=http://localhost:8000/ meteor
+
+
+queries = [
+      models.List.objects.filter(userId=''),
+  ]
