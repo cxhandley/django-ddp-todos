@@ -10,7 +10,7 @@ class List(Collection):
 
     @api_endpoint('insert')
     def insert(self, params):
-        obj = models.List(name=params['name'], incompleteCount=params['incompleteCount'])
+        obj = models.List(name=params['name'], incompleteCount=params['incompleteCount'], userId='')
         obj.save()
 
     @api_endpoint('update')
@@ -59,15 +59,13 @@ class Todos(Collection):
 
 
 class publicLists(Publication):
-
-  queries = [
+    queries = [
         models.List.objects.filter(userId=''),
     ]
 
 class privateLists(Publication):
+    queries = [
 
-  queries = [
-        models.List.objects.filter(userId=''),
     ]
 
 class todos(Publication):
