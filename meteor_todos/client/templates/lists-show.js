@@ -85,8 +85,8 @@ var toggleListPrivacy = function(list) {
     return alert("Please sign in or create an account to make private lists.");
   }
 
-  if (list.userId) {
-    Lists.update(list._id, {$unset: {userId: true}});
+  if (list.userId != '') {
+    Lists.update(list._id, {$set: {userId: ''}});
   } else {
     // ensure the last public list cannot be made private
     if (Lists.find({userId: {$exists: false}}).count() === 1) {

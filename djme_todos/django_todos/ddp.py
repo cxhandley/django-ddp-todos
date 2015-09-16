@@ -7,6 +7,7 @@ import models
 
 class List(Collection):
     model = models.List
+    user_rel = []
 
     @api_endpoint('insert')
     def insert(self, params):
@@ -65,7 +66,7 @@ class publicLists(Publication):
 
 class privateLists(Publication):
     queries = [
-
+        models.List.objects.exclude(userId=''),
     ]
 
 class todos(Publication):
