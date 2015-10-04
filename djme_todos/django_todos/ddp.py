@@ -1,14 +1,14 @@
 from django.db.models import Q
+from django.contrib.auth import get_user_model
 from dddp.api import API, Collection, Publication, api_endpoint
 from dddp.models import get_meteor_id, get_object, get_object_id
 import models
 
-# from django.contrib.auth.models import User
 
+User = get_user_model()
 
 class List(Collection):
     model = models.List
-    user_rel=['user']
 
     def objects_for_user(self, user, qs=None, xmin__lte=None):
         qs = super(List, self).get_queryset(qs)
@@ -25,6 +25,9 @@ class List(Collection):
         obj = models.List.objects.get(aid=params['_id'])
         if '$set' in _set:
             for key, val in _set['$set'].items():
+                if key == 'userId':
+                    user = get_object(User, val)
+                    obj.user = user
                 setattr(obj, key, val)
                 obj.save()
         if '$inc' in _set:
@@ -65,15 +68,11 @@ class Todos(Collection):
       obj.delete()
 
 
-class publicLists(Publication):
+class filteredLists(Publication):
     queries = [
-        models.List.objects.filter(userId=''),
+        models.List.objects.all(),
     ]
 
-class privateLists(Publication):
-    queries = [
-        models.List.objects.exclude(userId=''),
-    ]
 
 class todos(Publication):
 
@@ -87,7 +86,6 @@ class todos(Publication):
 API.register([
     List,
     Todos,
-    publicLists,
-    privateLists,
+    filteredLists,
     todos,
 ])
