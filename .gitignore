@@ -14,6 +14,9 @@ __pycache__/
 .Python
 env/
 build/
+!meteor/build/*
+!meteor/lib/*
+!meteor/client/lib/*
 develop-eggs/
 dist/
 downloads/

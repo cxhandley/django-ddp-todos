@@ -1,6 +1,6 @@
-Django==1.8.4
+Django==1.9
 django-dbarray==0.2
-django-ddp==0.19.0
+#django-ddp==0.19.0
 django-environ==0.3.0
 gevent==1.0.2
 gevent-websocket==0.9.5
@@ -10,5 +10,7 @@ psycogreen==1.0
 psycopg2==2.6.1
 pybars3==0.9.1
 PyMeta3==0.5.1
-six==1.9.0
+six==1.10.0
 wheel==0.24.0
+
+-e git+https://github.com/cxhandley/django-ddp.git@develop#egg=django-ddp

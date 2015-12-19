@@ -7,11 +7,12 @@ import models
 
 User = get_user_model()
 
-class List(Collection):
+class Lists(Collection):
+    name='lists'
     model = models.List
 
     def objects_for_user(self, user, qs=None, xmin__lte=None):
-        qs = super(List, self).get_queryset(qs)
+        qs = super(Lists, self).get_queryset(qs)
         qs = qs.filter(Q(**{'user': user}) | Q(**{'userId': ''}))
         return qs
 
@@ -44,6 +45,7 @@ class List(Collection):
 
 
 class Todos(Collection):
+    name='todos'
     model = models.Todos
 
     @api_endpoint('insert')
@@ -68,14 +70,16 @@ class Todos(Collection):
       obj.delete()
 
 
-class filteredLists(Publication):
+class publicLists(Publication):
     queries = [
         models.List.objects.all(),
     ]
 
+class privateLists(Publication):
+    queries = []
+
 
 class todos(Publication):
-
     def get_queries(self, listId):
         return [
             models.Todos.objects.filter(listId=listId)
@@ -84,8 +88,9 @@ class todos(Publication):
 
 
 API.register([
-    List,
+    Lists,
     Todos,
-    filteredLists,
+    publicLists,
+    privateLists,
     todos,
 ])
