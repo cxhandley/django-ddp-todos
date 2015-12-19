@@ -23,7 +23,7 @@ from dddp.views import MeteorView
 
 app = MeteorView.as_view(
     json_path=os.path.join(
-        settings.SITE_ROOT, 'build', 'bundle', 'star.json'
+        settings.SITE_ROOT, 'meteor', 'build', 'bundle', 'star.json'
     ),
 )
 
