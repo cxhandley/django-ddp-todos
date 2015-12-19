@@ -11,19 +11,21 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import environ
+root = environ.Path(__file__) - 3
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env()
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_ROOT = root()
 
+DEBUG = env('DEBUG')
+TEMPLATE_DEBUG = DEBUG
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+DATABASES = {
+    'default': env.db(),
+}
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', None)
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -72,22 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'djme_todos.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-# Posgres 9.4 - "createdb django_todos"
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_todos',
-        'USER': os.environ.get('PGRS_UNAME', None), # Required to be non-empty string
-        'PASSWORD': os.environ.get('PGRS_PWORD', None),
-        'HOST':'', # Set to empty string for localhost.
-        'PORT':'', # Set to empty string for default.
-    }
-}
 
 
 # Internationalization
