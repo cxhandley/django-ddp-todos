@@ -14,14 +14,13 @@ __pycache__/
 .Python
 env/
 build/
-!meteor/build/*
-!meteor/lib/*
-!meteor/client/lib/*
 develop-eggs/
 dist/
 downloads/
 eggs/
-lib/
+lib/*
+!meteor/meteor_todos/lib/*
+!meteor/meteor_todos/client/lib/*
 lib64/
 parts/
 sdist/
