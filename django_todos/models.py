@@ -10,6 +10,7 @@ class List(AleaIdMixin, models.Model):
     user = models.ForeignKey('auth.User', null=True, blank=True)
     userId = models.CharField(max_length=20, null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
+    meteor_collection = models.CharField(max_length=20, default='lists')
 
     class Meta:
         ordering = ['createdAt']
@@ -24,6 +25,7 @@ class Todos(AleaIdMixin, models.Model):
     text = models.CharField(max_length=50)
     checked = models.BooleanField(default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
+    meteor_collection = models.CharField(max_length=20, default='todos')
 
     class Meta:
         ordering = ['createdAt']

@@ -18,7 +18,11 @@ class Lists(Collection):
 
     @api_endpoint('insert')
     def insert(self, params):
-        obj = models.List(name=params['name'], incompleteCount=params['incompleteCount'], userId='')
+        obj = models.List(
+            name=params['name'],
+            incompleteCount=params['incompleteCount'],
+            userId='',
+        )
         obj.save()
 
     @api_endpoint('update')
