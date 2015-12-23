@@ -9,22 +9,56 @@ Installation
 
 The easiest way to get starting is to (assuming you have virtualenvwrapper):
 
-    $ git clone https://github.com/django-ddp/django-ddp-todos.git
-    $ cd django-ddp-todos
-    $ mkvirtualenv ddp-todos
-    $ workon ddp-todos
-    * install postgresql if not installed
-    $ createdb djme_todos
-    * modify djme_todos/.env to set up DATABASE_URL
-    $ pip install -r requirements.txt
-    * install meteor https://www.meteor.com/install
-    $ cd meteor/meteor_todos
-    $ meteor build --directory ../build --server localhost:8000
-    $ cd ../..
-    $ add2virtualenv .
-    $ python manage.py migrate
-    $ DJANGO_SETTINGS_MODULE=djme_todos.settings dddp
-    * go to http://localhost:8000
+Clone the repo
+
+.. code:: sh
+    git clone https://github.com/django-ddp/django-ddp-todos.git
+.. code:: sh
+    cd django-ddp-todos
+
+Make virtual environment (recommended)
+
+.. code:: sh
+    mkvirtualenv ddp-todos
+    workon ddp-todos
+
+Install postgresql if not installed
+
+.. code:: sh
+    createdb djme_todos
+
+Modify djme_todos/.env to set up DATABASE_URL
+
+Install requirements
+
+.. code:: sh
+    pip install -r requirements.txt
+
+Install meteor https://www.meteor.com/install
+
+Build the meteor app
+.. code:: sh
+    cd meteor/meteor_todos
+
+.. code:: sh
+    meteor build --directory ../build --server localhost:8000
+
+Add directory to PYTHONPATH in virtualenv
+
+.. code:: sh
+    cd ../..
+
+.. code::sh
+    add2virtualenv .
+
+Run DJANGO
+
+.. code:: sh
+    python manage.py migrate
+.. code:: sh
+    DJANGO_SETTINGS_MODULE=djme_todos.settings dddp
+
+Go to http://localhost:8000
 
 
 References
