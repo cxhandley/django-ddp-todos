@@ -12,19 +12,31 @@ The easiest way to get starting is to (assuming you have virtualenvwrapper):
 Clone the repo
 
 .. code:: sh
-    git clone https://github.com/django-ddp/django-ddp-todos.git
+
+    pip install django-ddp
+
 .. code:: sh
+
+    git clone https://github.com/django-ddp/django-ddp-todos.git
+
+.. code:: sh
+
     cd django-ddp-todos
 
 Make virtual environment (recommended)
 
 .. code:: sh
+
     mkvirtualenv ddp-todos
+
+.. code:: sh
+
     workon ddp-todos
 
 Install postgresql if not installed
 
 .. code:: sh
+
     createdb djme_todos
 
 Modify djme_todos/.env to set up DATABASE_URL
@@ -32,30 +44,39 @@ Modify djme_todos/.env to set up DATABASE_URL
 Install requirements
 
 .. code:: sh
+
     pip install -r requirements.txt
 
 Install meteor https://www.meteor.com/install
 
 Build the meteor app
+
 .. code:: sh
+
     cd meteor/meteor_todos
 
 .. code:: sh
+
     meteor build --directory ../build --server localhost:8000
 
 Add directory to PYTHONPATH in virtualenv
 
 .. code:: sh
+
     cd ../..
 
 .. code::sh
+
     add2virtualenv .
 
 Run DJANGO
 
 .. code:: sh
+
     python manage.py migrate
+
 .. code:: sh
+
     DJANGO_SETTINGS_MODULE=djme_todos.settings dddp
 
 Go to http://localhost:8000
